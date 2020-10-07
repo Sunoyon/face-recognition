@@ -1,0 +1,12 @@
+version: "3"
+services:
+  flask-foundation-service:
+    build: .
+    ports:
+      - 5432:5432
+      - 5000:5000
+    environment:
+      APP_CONFIG: config/prod.cfg
+    volumes:
+      - ./logs:/var/log/flask-foundation-service/
+    command: sh ./entrypoint.sh
