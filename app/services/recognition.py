@@ -83,6 +83,6 @@ def distance(
                       len(unknown_face_encoding))
         raise AppError(status_code=406, message="No face or more than 1 face found in unknown image.")
 
-    distance = face_recognition.face_distance([ref_face_encoding[0]], unknown_face_encoding[0])
-    logging.info("distance of two faces: %f", distance[0])
-    return distance[0]
+    face_distance = face_recognition.face_distance([ref_face_encoding[0]], unknown_face_encoding[0])
+    logging.info("distance of two faces: %f", face_distance[0])
+    return face_distance[0]
