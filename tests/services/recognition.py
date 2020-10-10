@@ -1,3 +1,4 @@
+import base64
 import os
 import unittest
 from os.path import dirname
@@ -12,8 +13,8 @@ class RecognitionTest(unittest.TestCase):
         os.chdir(base_dir)
         print("Changed to project directory: {}".format(base_dir))
 
-        self.reference_file = "tests/images/sunoyon-1.jpg"
-        self.unknown_file = "tests/images/sunoyon-2.jpg"
+        self.reference_file = "tests/images/sunoyon-2.jpg"
+        self.unknown_file = "tests/images/sunoyon-1.jpg"
         self.image_format = "file"
 
     def tearDown(self) -> None:
@@ -26,9 +27,24 @@ class RecognitionTest(unittest.TestCase):
                           detection_number_of_times_to_upsample=1,
                           detection_model="hog",
                           landmark_model="large",
-                          num_jitters=1)
+                          num_jitters=10)
         print("Distance of test pictures: {}".format(result))
-        # self.assertEqual(True, False)
+
+        with open(self.reference_file, "rb") as fp:
+            img_data = fp.read()
+            ref_base64 = base64.b64encode(img_data)
+        with open(self.unknown_file, "rb") as fp:
+            img_data = fp.read()
+            unknown_base64 = base64.b64encode(img_data)
+
+        result = distance(reference_image=ref_base64,
+                          unknown_image=unknown_base64,
+                          image_format="base64",
+                          detection_number_of_times_to_upsample=1,
+                          detection_model="hog",
+                          landmark_model="large",
+                          num_jitters=10)
+        print("Distance of test pictures using base64: {}".format(result))
 
     def test_load(self):
         img_numpy_array = load(image=self.reference_file, image_format=self.image_format)
