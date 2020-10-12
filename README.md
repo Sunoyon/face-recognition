@@ -36,3 +36,11 @@ Features:
 
     $ python -m unittest tests.controllers.recognition
     $ python -m unittest tests.services.recognition
+    
+### Docker
+
+    # To build the image and up the container
+    $ sudo docker-compose up --detach
+    
+    # To stop the container
+    $ sudo docker-compose down
