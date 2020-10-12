@@ -8,7 +8,7 @@ Features:
 *   Logger configuration
 *   Error management in HTTP layer
 *   DTO management
-*   Containerization with docker # TODO
+*   Containerization with docker 
 
 ### Pre requisite
 
