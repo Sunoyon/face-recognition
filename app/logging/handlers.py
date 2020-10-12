@@ -8,6 +8,8 @@ def mkdir(directory):
 
 
 class MakeDirTimedRotatingFileHandler(handlers.TimedRotatingFileHandler):
-    def __init__(self, filename, when='h', interval=1, backupCount=0, encoding=None, delay=False, utc=False, atTime=None):
+    def __init__(self, filename, when='h', interval=1, backupCount=0, encoding=None, delay=False, utc=False,
+                 atTime=None):
         mkdir(os.path.dirname(filename))
-        handlers.TimedRotatingFileHandler.__init__(self, filename, when, interval, backupCount, encoding, delay, utc, atTime)
+        handlers.TimedRotatingFileHandler.__init__(self, filename, when, interval, backupCount, encoding, delay, utc,
+                                                   atTime)

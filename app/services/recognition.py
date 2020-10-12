@@ -7,19 +7,23 @@ import numpy as np
 from face_recognition.api import _css_to_rect, \
     pose_predictor_68_point, pose_predictor_5_point, face_encoder
 
-from app.exceptions.errors import AppError
+from app.exceptions.errors import AppImageProcessingError
 
 
 def load(image, image_format='file'):
-    if image_format == 'file':
-        img = face_recognition.load_image_file(image)
-        return img
-    elif image_format == 'base64':
-        file = BytesIO(base64.b64decode(image))
-        return face_recognition.load_image_file(file)
-    else:
-        logging.error("Invalid face image format. [image_format= %s]", image_format)
-        raise AppError(status_code=406, message="Invalid face image format")
+    try:
+        if image_format == 'file':
+            img = face_recognition.load_image_file(image)
+            return img
+        elif image_format == 'base64':
+            file = BytesIO(base64.b64decode(image))
+            return face_recognition.load_image_file(file)
+        else:
+            logging.error("Invalid face image format. [image_format= %s]", image_format)
+            raise AppImageProcessingError(msg="Invalid image format.")
+    except Exception as e:
+        logging.error("Unable to load image file.")
+        raise AppImageProcessingError(msg="Unable to load image file.")
 
 
 def face_locations(image, number_of_times_to_upsample, model):
@@ -77,11 +81,11 @@ def distance(
     if len(ref_face_encoding) != 1:
         logging.error("No face or more than 1 face found in reference image. Face count [%d]",
                       len(ref_face_encoding))
-        raise AppError(status_code=406, message="No face or more than 1 face found in reference image.")
+        raise AppImageProcessingError(msg="No face or more than 1 face found in reference image.")
     if len(unknown_face_encoding) != 1:
         logging.error("No face or more than 1 face found in unknown image. Face count [%d]",
                       len(unknown_face_encoding))
-        raise AppError(status_code=406, message="No face or more than 1 face found in unknown image.")
+        raise AppImageProcessingError(msg="No face or more than 1 face found in unknown image.")
 
     face_distance = face_recognition.face_distance([ref_face_encoding[0]], unknown_face_encoding[0])
     logging.info("distance of two faces: %f", face_distance[0])

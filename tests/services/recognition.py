@@ -9,6 +9,7 @@ from app.services.recognition import distance, load, face_locations, raw_face_la
 class RecognitionTest(unittest.TestCase):
 
     def setUp(self) -> None:
+        # To run with IDE
         base_dir = dirname(dirname(dirname(os.path.abspath(__file__))))
         os.chdir(base_dir)
         print("Changed to project directory: {}".format(base_dir))
