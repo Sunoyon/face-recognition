@@ -1,12 +1,11 @@
 version: "3"
 services:
-  flask-foundation-service:
+  face-recognition:
     build: .
     ports:
-      - 5432:5432
-      - 5000:5000
+      - 5001:5001
     environment:
       APP_CONFIG: config/prod.cfg
     volumes:
-      - ./logs:/var/log/flask-foundation-service/
+      - ./logs:/var/log/face-recognition/
     command: sh ./entrypoint.sh
