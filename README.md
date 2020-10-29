@@ -3,11 +3,13 @@ A face recognition service using dlib library. This service exposes a REST API w
 
 The service is built over flask-rebar framework and containerization support is provided using dockerfile.
 
-Features:
+**Features:**
 *   Expose dlib face recognition service by REST API
 *   Expose underline parameters of dlib in the API for both face detections and recognition
 
-Packaging: The service provides standard production packaging as follows.
+**Packaging:** 
+
+The service provides standard production packaging as follows.
 *   Environment (dev/ prod/ test) configuration management
 *   Logger configuration
 *   Error management in HTTP layer
