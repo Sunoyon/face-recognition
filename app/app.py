@@ -10,7 +10,8 @@ v1_registry = rebar.create_handler_registry(
     prefix='/v1',
     swagger_path='/apidocs',
     swagger_ui_path='/apidocs-ui',
-    swagger_generator=SwaggerV3Generator()
+    swagger_generator=SwaggerV3Generator(title="Face Recognition",
+                                         description="Face Recognition REST Service using DLIB")
 )
 
 

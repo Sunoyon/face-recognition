@@ -1,4 +1,3 @@
-import json
 import logging
 
 import flask_rebar
@@ -18,6 +17,21 @@ from app.services import recognition
     response_body_schema={200: BaseFaceRecognitionResponseSchema}
 )
 def recognize():
+    """
+    Face Recognition REST API
+
+    Parameters:
+        refFaceImage (string):           Base64 string data of reference image (or, first image)
+        unknownFaceImage (string):       Base64 string data of unknown image (or, second image)
+        detectionModel (string):         Model name for face detection. Expected values: hog, cnn. Default: hog
+        landmarkModel (string):          Model name for landmark detection. Expected values: large, small. Default: large
+        detectionUpsampleCount (int):    Detection up-sample count. Default: 1
+        landmarkJittersCount (int):      Landmark jitter count. Default: 10
+
+    Returns:
+        matching (boolean):              The two faces match or not.
+        distance (float):                Distance of the two faces. (0-1)
+    """
     body = flask_rebar.get_validated_body()
     logging.info("Detection Model: %s, Landmark Model: %s", body['detectionModel'], body['landmarkModel'])
     tolerance = current_app.config['FACE_RECOGNITION_DLIB_DISTANCE_TOLERANCE']

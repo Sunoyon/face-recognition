@@ -1,5 +1,4 @@
 from app.app import v1_registry
-from app.exceptions.errors import AppError
 from app.schemas.response.health import HealthResponseSchema
 
 

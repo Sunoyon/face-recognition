@@ -2,13 +2,16 @@
 A face recognition service using dlib. The service is built over flask-rebar framework.
 
 Features:
-*   Expose dlib face recognition by REST API service
-*   Use of underline parameters for both detections and recognition
-*   Configuration management for environments: dev/ prod/ test
+*   Expose dlib face recognition service by REST API
+*   Use underline parameters in API for both detections and recognition
+
+Packaging:
+*   Environment (dev/ prod/ test) configuration support
 *   Logger configuration
 *   Error management in HTTP layer
 *   DTO management
 *   Containerization with docker 
+*   Unit test support
 
 ### Pre requisite
 
@@ -16,7 +19,7 @@ Features:
     build-essential 
     cmake
 
-### Build
+### Build in local
 
     $ pip install -r requirements.txt
     
@@ -40,7 +43,7 @@ Features:
 ### Docker
 
     # To build the image and up the container
-    $ sudo docker-compose up --detach
+    $ docker-compose up --detach
     
     # To stop the container
-    $ sudo docker-compose down
+    $ docker-compose down
