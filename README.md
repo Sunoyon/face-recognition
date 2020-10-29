@@ -1,12 +1,14 @@
 # DLIB Face Recognition Service 
-A face recognition service using dlib. The service is built over flask-rebar framework.
+A face recognition service using dlib library. This service exposes a REST API which will take two face images and identify whether they are from same person or not. 
+
+The service is built over flask-rebar framework and containerization support is provided using dockerfile.
 
 Features:
 *   Expose dlib face recognition service by REST API
-*   Use underline parameters in API for both detections and recognition
+*   Expose underline parameters of dlib in the API for both face detections and recognition
 
-Packaging:
-*   Environment (dev/ prod/ test) configuration support
+Packaging: The service provides standard production packaging as follows.
+*   Environment (dev/ prod/ test) configuration management
 *   Logger configuration
 *   Error management in HTTP layer
 *   DTO management
@@ -19,11 +21,11 @@ Packaging:
     build-essential 
     cmake
 
-### Build in local
+### Build `(without docker)`
 
     $ pip install -r requirements.txt
     
-### Run in dev mode
+### Run in dev mode `(without docker)`
 
     $ sh run.dev.sh
 
@@ -35,7 +37,7 @@ Packaging:
 
 ![API DOC](swagger-demo/swagger.png)
 
-### Run in prod mode
+### Run in prod mode `(without docker)`
 
     $ sh run.prod.sh
     
