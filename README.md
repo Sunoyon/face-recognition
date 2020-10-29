@@ -26,14 +26,19 @@ Packaging:
 ### Run in dev mode
 
     $ sh run.dev.sh
+
+### Swagger Documentation
     
+    http://localhost:5001/v1/apidocs-ui
+    
+### API Documentation
+
+![API DOC](swagger-demo/swagger.png)
+
 ### Run in prod mode
 
     $ sh run.prod.sh
     
-### Swagger Documentation
-    
-    http://localhost:5001/v1/apidocs-ui
     
 ### Run unit test
 
